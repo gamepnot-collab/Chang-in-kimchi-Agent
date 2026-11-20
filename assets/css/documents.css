@@ -185,6 +185,9 @@
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; flex-wrap: wrap; }
 .modal-actions .spacer { flex: 1; }
 
+.confirm-panel { max-width: 400px; }
+.confirm-panel p { margin: 0; font-size: 15px; }
+
 /* ---------- settings ---------- */
 .logo-box { display: flex; align-items: center; gap: 12px; }
 .logo-box img, .logo-box .brand-mark { width: 56px; height: 56px; border-radius: 14px; object-fit: contain; border: 1px solid var(--border); }

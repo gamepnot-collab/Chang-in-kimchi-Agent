@@ -124,7 +124,7 @@
           } else if (act === 'export') {
             U.download(`${name}_${U.ymd(new Date())}.csv`, BI.store.exportCSV(name));
           } else if (act === 'reset') {
-            if (!confirm(t('ds.resetConfirm'))) return;
+            if (!(await ui.confirm(t('ds.resetConfirm')))) return;
             BI.store.reset(name);
             ui.toast(t('ds.resetDone'));
             rerender();

@@ -184,5 +184,23 @@
     toastTimer = setTimeout(() => (el.className = 'toast'), 3200);
   }
 
-  BI.ui = { icon, kpi, kpiRow, card, chartCard, badge, table, bindTables, resetTables, rankList, sampleNotice, toast, v };
+  /** In-page confirmation dialog (browser confirm() is blocked in some embeds). */
+  function confirmBox(message, { ok = t('ui.ok'), danger = false } = {}) {
+    return new Promise((resolve) => {
+      const el = document.createElement('div');
+      el.className = 'modal';
+      el.setAttribute('role', 'alertdialog');
+      el.innerHTML = `<div class="modal-panel confirm-panel"><p>${BI.util.esc(message)}</p>
+        <div class="modal-actions"><button type="button" class="btn" data-v="0">${t('d.cancel')}</button>
+        <button type="button" class="btn primary" data-v="1">${BI.util.esc(ok)}</button></div></div>`;
+      document.body.appendChild(el);
+      const done = (v) => { el.remove(); document.removeEventListener('keydown', onKey); resolve(v); };
+      const onKey = (e) => { if (e.key === 'Escape') done(false); };
+      document.addEventListener('keydown', onKey);
+      el.addEventListener('click', (e) => { const b = e.target.closest('[data-v]'); if (b) done(b.dataset.v === '1'); else if (e.target === el) done(false); });
+      el.querySelector('[data-v="1"]').focus();
+    });
+  }
+
+  BI.ui = { confirm: confirmBox, icon, kpi, kpiRow, card, chartCard, badge, table, bindTables, resetTables, rankList, sampleNotice, toast, v };
 })(window.BI);

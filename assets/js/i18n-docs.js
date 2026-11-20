@@ -239,6 +239,7 @@
     's.importError': ['ไฟล์สำรองไม่ถูกต้อง', 'Invalid backup file', '잘못된 백업 파일'],
 
     /* misc */
+    'ui.ok': ['ยืนยัน', 'Confirm', '확인'],
     'col.leaveUsedShort': ['วันลา', 'Leave', '휴가']
   }, {
     'Sales Adjustment': ['ปรับปรุงยอดขาย (ลด/เพิ่มหนี้)', 'Sales adjustment', '매출 조정']

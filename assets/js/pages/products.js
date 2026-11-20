@@ -36,7 +36,7 @@
     const close = () => el.remove();
     el.addEventListener('click', (e) => { if (e.target === el || e.target.closest('[data-close]')) close(); });
     const del = el.querySelector('[data-del]');
-    if (del) del.addEventListener('click', () => { if (confirm(t('p.deleteConfirm'))) { D.removeProduct(p.id); close(); BI.app.render(); } });
+    if (del) del.addEventListener('click', async () => { if (await ui.confirm(t('p.deleteConfirm'))) { D.removeProduct(p.id); close(); BI.app.render(); } });
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const v = Object.fromEntries(new FormData(form));

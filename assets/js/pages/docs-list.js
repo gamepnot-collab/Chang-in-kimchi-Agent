@@ -80,8 +80,8 @@
       view.querySelector('#docStatus').addEventListener('change', (e) => { state.status = e.target.value; draw(); });
       view.querySelector('#newDoc').addEventListener('click', () => BI.app.openSheet());
       const cd = view.querySelector('#clearDemo');
-      if (cd) cd.addEventListener('click', () => {
-        if (!confirm(t('d.clearDemoConfirm'))) return;
+      if (cd) cd.addEventListener('click', async () => {
+        if (!(await ui.confirm(t('d.clearDemoConfirm')))) return;
         D.clearDemo(); ui.toast(t('d.demoCleared'), 'good'); BI.app.render();
       });
     }

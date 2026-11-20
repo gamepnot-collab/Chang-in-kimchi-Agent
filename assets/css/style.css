@@ -61,7 +61,7 @@ button { font: inherit; }
 
 /* ---------- top bar ---------- */
 .topbar {
-  position: sticky; top: 0; z-index: 30;
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
   display: flex; align-items: center; gap: 12px;
   height: var(--topbar-h);
   padding: 0 max(16px, calc((100vw - 1200px) / 2));

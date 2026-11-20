@@ -82,12 +82,12 @@
       ui.toast(t('d.issued').replace('{no}', saved.no), 'good');
       BI.app.render();
     });
-    on('#delBtn', () => {
-      if (!confirm(t('d.deleteConfirm'))) return;
+    on('#delBtn', async () => {
+      if (!(await ui.confirm(t('d.deleteConfirm'), { ok: t('d.delete') }))) return;
       D.remove(doc.id); ui.toast(t('d.deleted')); location.hash = '#/docs';
     });
-    on('#cancelBtn', () => {
-      if (!confirm(t('d.cancelConfirm').replace('{no}', doc.no))) return;
+    on('#cancelBtn', async () => {
+      if (!(await ui.confirm(t('d.cancelConfirm').replace('{no}', doc.no), { ok: t('d.cancelDoc') }))) return;
       D.cancel(doc.id); ui.toast(t('d.cancelled')); BI.app.render();
     });
   }

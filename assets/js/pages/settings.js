@@ -132,12 +132,12 @@
       view.querySelector('#exportBk').addEventListener('click', () => U.download(`chang-in-kimchi-backup-${U.ymd(new Date())}.json`, D.exportBackup(), 'application/json'));
       view.querySelector('#importBk').addEventListener('change', async (e) => {
         const file = e.target.files[0];
-        if (!file || !confirm(t('s.importConfirm'))) return;
+        if (!file || !(await ui.confirm(t('s.importConfirm')))) return;
         try { const n = D.importBackup(await file.text()); ui.toast(t('s.imported').replace('{n}', n), 'good'); BI.app.render(); }
         catch (err) { ui.toast(t('s.importError'), 'bad'); }
       });
       const cd = view.querySelector('#clearDemo2');
-      if (cd) cd.addEventListener('click', () => { if (confirm(t('d.clearDemoConfirm'))) { D.clearDemo(); ui.toast(t('d.demoCleared'), 'good'); BI.app.render(); } });
+      if (cd) cd.addEventListener('click', async () => { if (await ui.confirm(t('d.clearDemoConfirm'))) { D.clearDemo(); ui.toast(t('d.demoCleared'), 'good'); BI.app.render(); } });
     }
   };
 })(window.BI);
