@@ -284,7 +284,9 @@
   const i18n = {
     lang: 'th',
     langs: LANGS,
-    set(l) { this.lang = LANGS.includes(l) ? l : 'th'; }
+    set(l) { this.lang = LANGS.includes(l) ? l : 'th'; },
+    /** Merge more [th, en, ko] entries (used by feature modules). */
+    extend(dict, values) { Object.assign(UI, dict); if (values) Object.assign(VALUES, values); }
   };
   const idx = () => LANGS.indexOf(i18n.lang);
 
@@ -295,6 +297,7 @@
     return e ? e[idx()] ?? e[1] : key;
   };
   /** Translate a data value if known, else return it unchanged. */
+  BI.td = (key) => BI.t(key);
   BI.tv = (val) => {
     const e = VALUES[val];
     return e ? e[idx()] ?? e[1] : val;

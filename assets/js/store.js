@@ -24,7 +24,7 @@
   });
 
   BI.schemas = {
-    customers: S('sales', ['customer_id', 'company', 'contact_name', 'email', 'phone', 'segment', 'owner', 'status', 'created_date:date', 'last_contact:date']),
+    customers: S('sales', ['customer_id', 'company', 'contact_name', 'email', 'phone', 'segment', 'owner', 'status', 'created_date:date', 'last_contact:date', 'address', 'tax_id', 'branch']),
     sales_deals: S('sales', ['deal_id', 'date:date', 'company', 'sales_rep', 'source', 'stage', 'value:num', 'close_date:date']),
     sales_targets: S('sales', ['month:month', 'target:num']),
     content_posts: S('marketing', ['post_id', 'date:date', 'platform', 'creator', 'content_type', 'title', 'reach:num', 'engagements:num', 'status']),
@@ -99,16 +99,24 @@
     return { rows, missing, extra };
   }
 
+  function base(name) {
+    if (cache[name]) return cache[name];
+    const saved = readLS(KEY(name));
+    if (saved && Array.isArray(saved.rows)) return (cache[name] = saved.rows);
+    if (!sample) sample = BI.sampleData.generate();
+    return (cache[name] = sample[name] || []);
+  }
+
   BI.store = {
     normalize,
 
     get(name) {
-      if (cache[name]) return cache[name];
-      const saved = readLS(KEY(name));
-      if (saved && Array.isArray(saved.rows)) return (cache[name] = saved.rows);
-      if (!sample) sample = BI.sampleData.generate();
-      return (cache[name] = sample[name] || []);
+      // Issued invoices / receipts from the document system flow into finance.
+      if (name === 'finance_transactions' && BI.docs) return base(name).concat(BI.docs.financeRows());
+      return base(name);
     },
+
+    raw(name) { return base(name); },
 
     /** meta: { source: 'file'|'gsheet'|..., label, url } */
     set(name, rows, meta = {}) {
@@ -124,20 +132,20 @@
 
     meta(name) {
       const saved = readLS(KEY(name));
-      return saved ? saved.meta : { source: 'sample', count: this.get(name).length };
+      return saved ? saved.meta : { source: 'sample', count: base(name).length };
     },
 
     isSample(name) { return this.meta(name).source === 'sample'; },
 
     templateCSV(name) {
       const cols = BI.schemas[name].columns.map((c) => c.name);
-      const rows = this.get(name).slice(0, 5);
+      const rows = base(name).slice(0, 5);
       return U.toCSV(cols, rows);
     },
 
     exportCSV(name) {
       const cols = BI.schemas[name].columns.map((c) => c.name);
-      return U.toCSV(cols, this.get(name));
+      return U.toCSV(cols, base(name));
     },
 
     /** Parse a File (csv / xlsx / xls) into raw row objects. */

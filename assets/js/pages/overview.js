@@ -5,6 +5,7 @@
   BI.pages = BI.pages || {};
   BI.pages.overview = {
     title: 'nav.overview',
+    range: true,
     crumb: 'app.company',
     render(view) {
       const fin = BI.store.get('finance_transactions');

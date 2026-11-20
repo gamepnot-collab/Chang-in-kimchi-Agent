@@ -14,6 +14,9 @@
     new Intl.NumberFormat(U.locale(), { notation: 'compact', maximumFractionDigits: 1 }).format(+v || 0);
   U.money = (v) =>
     new Intl.NumberFormat(U.locale(), { style: 'currency', currency: BI.config.currency, currencyDisplay: 'narrowSymbol', maximumFractionDigits: 0 }).format(+v || 0);
+  /** Money with 2 decimals — for documents, where satang matter. */
+  U.money2 = (v) =>
+    new Intl.NumberFormat(U.locale(), { style: 'currency', currency: BI.config.currency, currencyDisplay: 'narrowSymbol', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(+v || 0);
   U.moneyCompact = (v) =>
     new Intl.NumberFormat(U.locale(), { style: 'currency', currency: BI.config.currency, currencyDisplay: 'narrowSymbol', notation: 'compact', maximumFractionDigits: 1 }).format(+v || 0);
   U.pct = (v, digits = 1) =>

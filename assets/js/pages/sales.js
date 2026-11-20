@@ -6,6 +6,7 @@
   BI.pages = BI.pages || {};
   BI.pages.sales = {
     title: 'nav.sales',
+    range: true,
     crumb: 'app.department',
     render(view) {
       const deals = BI.store.get('sales_deals');

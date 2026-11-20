@@ -5,6 +5,7 @@
   BI.pages = BI.pages || {};
   BI.pages['marketing/content'] = {
     title: 'nav.content',
+    range: true,
     crumb: 'nav.marketing',
     render(view) {
       const posts = BI.store.get('content_posts');

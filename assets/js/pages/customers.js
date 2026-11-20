@@ -5,6 +5,7 @@
   BI.pages = BI.pages || {};
   BI.pages.customers = {
     title: 'nav.customers',
+    range: true,
     crumb: 'app.crm',
     render(view) {
       const customers = BI.store.get('customers');

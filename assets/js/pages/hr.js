@@ -5,6 +5,7 @@
   BI.pages = BI.pages || {};
   BI.pages.hr = {
     title: 'nav.hr',
+    range: true,
     crumb: 'app.department',
     render(view) {
       const emp = BI.store.get('employees');

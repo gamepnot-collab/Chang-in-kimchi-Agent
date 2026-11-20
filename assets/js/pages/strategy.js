@@ -5,6 +5,7 @@
   BI.pages = BI.pages || {};
   BI.pages['marketing/strategy'] = {
     title: 'nav.strategy',
+    range: true,
     crumb: 'nav.marketing',
     render(view) {
       const ads = BI.store.get('ad_campaigns');

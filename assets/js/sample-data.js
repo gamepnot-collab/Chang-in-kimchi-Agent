@@ -46,7 +46,10 @@
         owner: pick(reps),
         status: pick(['Active', 'Active', 'Active', 'Prospect', 'Inactive']),
         created_date: created,
-        last_contact: created
+        last_contact: created,
+        address: `${int(1, 999)}/${int(1, 99)} ถนน${pick(['สุขุมวิท', 'พระราม 4', 'รัชดาภิเษก', 'นิมมานเหมินท์', 'เพชรบุรี', 'สีลม'])} ${pick(['กรุงเทพมหานคร 10110', 'กรุงเทพมหานคร 10400', 'เชียงใหม่ 50200', 'ภูเก็ต 83000', 'นครราชสีมา 30000'])}`,
+        tax_id: '0' + String(int(105500000000, 105569999999)),
+        branch: 'สำนักงานใหญ่'
       });
     }
 
