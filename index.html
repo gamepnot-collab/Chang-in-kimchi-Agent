@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chang-in-kimchi BI</title>
+  <meta name="description" content="CRM & Business Intelligence dashboard by department">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#/overview">
+        <span class="brand-mark" aria-hidden="true">CK</span>
+        <span class="brand-text">
+          <strong>Chang-in-kimchi</strong>
+          <small data-i18n="app.tagline"></small>
+        </span>
+      </a>
+      <nav id="nav" class="nav"></nav>
+      <div class="sidebar-foot">
+        <span id="dataStatus"></span>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="titles">
+          <p class="crumb" id="pageCrumb"></p>
+          <h1 id="pageTitle"></h1>
+        </div>
+        <div class="controls">
+          <label class="range">
+            <span class="sr-only" data-i18n="ctrl.range"></span>
+            <select id="rangeSelect"></select>
+          </label>
+          <div class="seg" id="langSwitch" role="group" aria-label="Language">
+            <button type="button" data-lang="th">TH</button>
+            <button type="button" data-lang="en">EN</button>
+            <button type="button" data-lang="ko">KO</button>
+          </div>
+          <button class="icon-btn" id="themeBtn" type="button" aria-label="Theme"></button>
+        </div>
+      </header>
+      <main id="view" class="view" tabindex="-1"></main>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/vendor/chart.umd.js"></script>
+  <script src="assets/vendor/xlsx.full.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/sample-data.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/pages/overview.js"></script>
+  <script src="assets/js/pages/content.js"></script>
+  <script src="assets/js/pages/strategy.js"></script>
+  <script src="assets/js/pages/sales.js"></script>
+  <script src="assets/js/pages/customers.js"></script>
+  <script src="assets/js/pages/hr.js"></script>
+  <script src="assets/js/pages/finance.js"></script>
+  <script src="assets/js/pages/datasources.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
